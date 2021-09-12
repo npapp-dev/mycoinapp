@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mybitcoinapp/screens/main_screen.dart';
-import 'package:mybitcoinapp/shared/menu_drawer.dart';
+import 'package:mycoinapp/screens/main_screen.dart';
+import 'package:mycoinapp/shared/menu_drawer.dart';
 
 
 void main() {
