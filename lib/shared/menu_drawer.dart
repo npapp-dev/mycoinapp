@@ -16,12 +16,11 @@ class MenuDrawer extends StatelessWidget {
     final List<String> menuTitles =[
       'Home',
       'Exchange rate',
-      'My coins'
     ];
     List<Widget> menuItems = [];
     menuItems.add(DrawerHeader(
       decoration: BoxDecoration(color: Colors.blueGrey),
-      child: Text('Globo Fitness',
+      child: Text('Coin app',
         style: TextStyle(color: Colors.white, fontSize: 28))
     ));
     menuTitles.forEach((String element){
