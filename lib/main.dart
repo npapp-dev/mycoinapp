@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'my coin app',
+      title: 'My coin',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
@@ -20,6 +20,14 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(title: Text('CoinWorld')),
         body: Center(child:MainScreen()),
         drawer: MenuDrawer(),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+
+          },
+          label: const Text('Select'),
+          icon: const Icon(Icons.add),
+          backgroundColor: Colors.lightGreen,
+        ),
       )
     );
   }

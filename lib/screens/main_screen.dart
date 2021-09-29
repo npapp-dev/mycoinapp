@@ -27,14 +27,19 @@ class _MainScreenState extends State<MainScreen> {
                 itemCount: response.keys.length,
                 itemBuilder: (BuildContext context, int index) {
                   String key = response.keys.elementAt(index);
-                  return Container(
-                      height: 50,
-                      child: Row(
-                        children: [
-                          Expanded(child: Text(key, textAlign: TextAlign.center)),
-                          Expanded(child: Center(child: Text('${f.format(response[key])}'))),
-                        ],
-                      ));
+                  return  InkWell(
+                      onTap: () {
+
+                      },
+                      child: Container(
+                          height: 50,
+                          child: Row(
+                            children: [
+                              Expanded(child: Text(key, textAlign: TextAlign.center)),
+                              Expanded(child: Center(child: Text('${f.format(response[key])}'))),
+                            ],
+                          ))
+                  );
                 },
               );
             } else {

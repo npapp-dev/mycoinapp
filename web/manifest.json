@@ -1,5 +1,5 @@
 {
-    "name": "mybcoinapp",
+    "name": "mycoinapp",
     "short_name": "mycoinapp",
     "start_url": ".",
     "display": "standalone",
