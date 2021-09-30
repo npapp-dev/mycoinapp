@@ -26,6 +26,23 @@ class CoinPricesService {
     }
   }
 
+  Future<String> getMarketsForCoin(String coin) async{
+    var client = http.Client();
+    try {
+      final Map<String, double> myList = new Map();
+      var url =
+      Uri.https('api.coingecko.com', '/api/v3/coins/markets', {'ids': coin, 'vs_currency': 'HUF'});
+      var response = await client.get(url);
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        throw Exception('Failed to get http');
+      }
+    } finally {
+      client.close();
+    }
+  }
+
   Future<String> getLatestBitCoinPrices() async {
     var client = http.Client();
     try {
