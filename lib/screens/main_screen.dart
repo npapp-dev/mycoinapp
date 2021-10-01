@@ -58,29 +58,64 @@ class _MainScreenState extends State<MainScreen> {
   Widget _buildPopupDialog(BuildContext context, String key) {
     return new AlertDialog(
       title: const Text('Details'),
-      content: Column(
-        children:[
-          FutureBuilder(
-            future: coinPricesService.getMarketsForCoin(key),
-            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-              if (snapshot.hasData) {
-                var response = snapshot.data;
-                print(response);
-                var f = NumberFormat.currency(
-                    decimalDigits: 0, locale: "hu_HUF", symbol: "HUF");
-                return Text(response, textAlign: TextAlign.center);
-              } else {
-                return Center(child: CircularProgressIndicator());
-              }
-            },
-          )]
+      content: Container(
+        padding: const EdgeInsets.all(8.0),
+        alignment: Alignment.center,
+        child: FutureBuilder(
+                future: coinPricesService.getMarketsForCoin(key),
+                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                  if (snapshot.hasData) {
+                    var response = json.decode(snapshot.data);
+                    var f = NumberFormat.currency(
+                        decimalDigits: 0, locale: "hu_HUF", symbol: "HUF");
+                    return
+                          Column(
+                            children: [
+                                 Row(
+                                    children: [
+                                        Expanded(child: Text('Name', textAlign: TextAlign.center)),
+                                        Expanded(child: Center(child: Text(response[0]['name']))),
+                                  ]),Row(
+                                  children:[
+                                      Expanded(child: Text('Symbol', textAlign: TextAlign.center)),
+                                      Expanded(child: Center(child: Text(response[0]['symbol']))),
+                                  ]),Row(
+                                    children:[
+                                      Expanded(child: Text('Current price', textAlign: TextAlign.center)),
+                                      Expanded(child: Center(child: Text('${f.format(response[0]['current_price'])}'))),
+                                    ]),Row(
+                                  children:[
+                                    Expanded(child: Text('High 24h', textAlign: TextAlign.center)),
+                                    Expanded(child: Center(child: Text('${f.format(response[0]['high_24h'])}'))),
+                                  ]),Row(
+                                  children:[
+                                    Expanded(child: Text('Low 24h', textAlign: TextAlign.center)),
+                                    Expanded(child: Center(child: Text('${f.format(response[0]['low_24h'])}'))),
+                                  ]),Row(
+                                  children:[
+                                    Expanded(child: Text('Price change 24h', textAlign: TextAlign.center)),
+                                    Expanded(child: Center(child: Text('${f.format(response[0]['price_change_24h'])}'))),
+                                  ]),Row(
+                                  children:[
+                                    Expanded(child: Text('Price change percentage 24h', textAlign: TextAlign.center)),
+                                    Expanded(child: Center(child: Text('${f.format(response[0]['price_change_percentage_24h'])}'))),
+                                  ])
+                          ]
+                    );
+                  } else {
+                  return Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
       ),
       actions: <Widget>[
         new FlatButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          textColor: Theme.of(context).primaryColor,
+          textColor: Theme
+              .of(context)
+              .primaryColor,
           child: const Text('Close'),
         ),
       ],
