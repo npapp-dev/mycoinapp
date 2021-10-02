@@ -100,6 +100,11 @@ class _MainScreenState extends State<MainScreen> {
                                     Expanded(child: Text('Price change percentage 24h', textAlign: TextAlign.center)),
                                     Expanded(child: Center(child: Text('${f.format(response[0]['price_change_percentage_24h'])}'))),
                                   ])
+                              ,Row(
+                                  children:[
+                                    Expanded(child: Text('Last updated', textAlign: TextAlign.center)),
+                                    Expanded(child: Center(child: Text(response[0]['last_updated']))),
+                                  ])
                           ]
                     );
                   } else {
@@ -109,14 +114,10 @@ class _MainScreenState extends State<MainScreen> {
               ),
       ),
       actions: <Widget>[
-        new FlatButton(
+        new TextButton(
           onPressed: () {
             Navigator.of(context).pop();
-          },
-          textColor: Theme
-              .of(context)
-              .primaryColor,
-          child: const Text('Close'),
+          }, child: Text('Close'),
         ),
       ],
     );
