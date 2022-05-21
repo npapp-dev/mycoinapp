@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       home: Scaffold(
-        appBar: AppBar(title: Text('CoinWorld')),
         body: Center(child:MainScreen()),
         drawer: MenuDrawer(),
         floatingActionButton: FloatingActionButton.extended(
