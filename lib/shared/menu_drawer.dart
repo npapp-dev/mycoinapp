@@ -16,7 +16,7 @@ class MenuDrawer extends StatelessWidget {
 
   List<Widget> buildMenuItems(BuildContext context){
     final List<String> menuTitles =[
-      'Home',
+      'Main',
       'Exchange rate',
     ];
     List<Widget> menuItems = [];
@@ -32,7 +32,7 @@ class MenuDrawer extends StatelessWidget {
           style: TextStyle(fontSize: 18)),
           onTap: (){
             switch(element){
-              case 'Home':
+              case 'Main':
                 screen = MainScreen();
                 break;
               case 'Exchange rate':
