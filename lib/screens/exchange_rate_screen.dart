@@ -30,7 +30,7 @@ class _ExchangeRateScreenState extends State<ExchangeRateScreen> {
                     .center)),
                 Expanded(child: DropdownButton<String>(
                   value: dropdownValue,
-                  icon: const Icon(Icons.arrow_downward),
+                  icon: const Icon(Icons.monetization_on_outlined),
                   elevation: 16,
                   style: const TextStyle(color: Colors.deepPurple),
                   underline: Container(
