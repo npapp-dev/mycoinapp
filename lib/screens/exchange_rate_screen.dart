@@ -85,6 +85,24 @@ class _ExchangeRateScreenState extends State<ExchangeRateScreen> {
                                     child: Text(
                                         response['rates']['USD'].toString())))
                               ]
+                          ),
+                          Row(
+                              children: [
+                                Expanded(child: Text(
+                                    'EUR', textAlign: TextAlign.center)),
+                                Expanded(child: Center(
+                                    child: Text(
+                                        response['rates']['EUR'].toString())))
+                              ]
+                          ),
+                          Row(
+                              children: [
+                                Expanded(child: Text(
+                                    'GBP', textAlign: TextAlign.center)),
+                                Expanded(child: Center(
+                                    child: Text(
+                                        response['rates']['GBP'].toString())))
+                              ]
                           )
                         ]);
                   } else {
