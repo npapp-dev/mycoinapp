@@ -15,46 +15,84 @@ class ExchangeRateScreen extends StatefulWidget {
 
 class _ExchangeRateScreenState extends State<ExchangeRateScreen> {
   ExchangeRateService exchangeRateService = new ExchangeRateService();
+  String dropdownValue = "GBP";
 
   Widget buildTextViewElement(context) {
     return Container(
         padding: const EdgeInsets.all(8.0),
         alignment: Alignment.center,
-        child: FutureBuilder(
-          future: exchangeRateService.getLatestExchangeRates(),
-          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            if (snapshot.hasData) {
-              var response = json.decode(snapshot.data);
-              return Column(
-                  children: [
-                    Row(
+        child:
+        Column(
+            children: [
+              Row(children: [
+                Expanded(child:
+                Text('Select base currency', textAlign: TextAlign
+                    .center)),
+                Expanded(child: DropdownButton<String>(
+                  value: dropdownValue,
+                  icon: const Icon(Icons.arrow_downward),
+                  elevation: 16,
+                  style: const TextStyle(color: Colors.deepPurple),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.deepPurpleAccent,
+                  ),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue!;
+                    });
+                  },
+                  items: <String>['EUR', 'HUF', 'USD', 'GBP']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ))
+              ]),
+              FutureBuilder(
+                future: exchangeRateService.getLatestExchangeRates(
+                    dropdownValue),
+                builder: (BuildContext context,
+                    AsyncSnapshot<dynamic> snapshot) {
+                  if (snapshot.hasData) {
+                    var response = json.decode(snapshot.data);
+                    return Column(
                         children: [
-                          Expanded(
-                              child: Text('Base', textAlign: TextAlign.center)),
-                          Expanded(child: Center(child: Text(response['base'])))
-                        ]),
-                    Row(
-                        children: [
-                          Expanded(child: Text(
-                              'HUF', textAlign: TextAlign.center)),
-                          Expanded(child: Center(
-                              child: Text(response['rates']['HUF'].toString())))
-                        ]
-                    ),
-                    Row(
-                        children: [
-                          Expanded(child: Text(
-                              'USD', textAlign: TextAlign.center)),
-                          Expanded(child: Center(
-                              child: Text(response['rates']['USD'].toString())))
-                        ]
-                    )
-                  ]);
-            } else {
-              return Center(child: CircularProgressIndicator());
-            }
-          },
-        ));
+                          Row(
+                              children: [
+                                Expanded(
+                                    child: Text('Base', textAlign: TextAlign
+                                        .center)),
+                                Expanded(child: Center(child: Text(
+                                    response['base'])))
+                              ]),
+                          Row(
+                              children: [
+                                Expanded(child: Text(
+                                    'HUF', textAlign: TextAlign.center)),
+                                Expanded(child: Center(
+                                    child: Text(
+                                        response['rates']['HUF'].toString())))
+                              ]
+                          ),
+                          Row(
+                              children: [
+                                Expanded(child: Text(
+                                    'USD', textAlign: TextAlign.center)),
+                                Expanded(child: Center(
+                                    child: Text(
+                                        response['rates']['USD'].toString())))
+                              ]
+                          )
+                        ]);
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
+              )
+            ]));
   }
 
 
