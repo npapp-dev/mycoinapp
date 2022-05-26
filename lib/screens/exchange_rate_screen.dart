@@ -6,7 +6,7 @@ import 'package:mycoinapp/services/coinprices_service.dart';
 import 'package:mycoinapp/services/exchange_rate_service.dart';
 import 'package:mycoinapp/shared/menu_drawer.dart';
 
-class ExchangeRateScreen extends StatefulWidget{
+class ExchangeRateScreen extends StatefulWidget {
   const ExchangeRateScreen({Key? key}) : super(key: key);
 
   @override
@@ -24,8 +24,32 @@ class _ExchangeRateScreenState extends State<ExchangeRateScreen> {
           future: exchangeRateService.getLatestExchangeRates(),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.hasData) {
-              var response = snapshot.data;
-              return Text(response);
+              var response = json.decode(snapshot.data);
+              return Column(
+                  children: [
+                    Row(
+                        children: [
+                          Expanded(
+                              child: Text('Base', textAlign: TextAlign.center)),
+                          Expanded(child: Center(child: Text(response['base'])))
+                        ]),
+                    Row(
+                        children: [
+                          Expanded(child: Text(
+                              'HUF', textAlign: TextAlign.center)),
+                          Expanded(child: Center(
+                              child: Text(response['rates']['HUF'].toString())))
+                        ]
+                    ),
+                    Row(
+                        children: [
+                          Expanded(child: Text(
+                              'USD', textAlign: TextAlign.center)),
+                          Expanded(child: Center(
+                              child: Text(response['rates']['USD'].toString())))
+                        ]
+                    )
+                  ]);
             } else {
               return Center(child: CircularProgressIndicator());
             }
@@ -33,10 +57,11 @@ class _ExchangeRateScreenState extends State<ExchangeRateScreen> {
         ));
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title:Text('Exchange rate')),
+        appBar: AppBar(title: Text('Exchange rate')),
         drawer: MenuDrawer(),
         body: buildTextViewElement(context));
   }
