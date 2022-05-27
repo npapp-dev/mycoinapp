@@ -19,10 +19,11 @@ class _ExchangeRateScreenState extends State<ExchangeRateScreen> {
 
   Widget buildTextViewElement(context) {
     return Container(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(20.0),
         alignment: Alignment.center,
         child:
         Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Row(children: [
                 Expanded(child:
@@ -51,6 +52,7 @@ class _ExchangeRateScreenState extends State<ExchangeRateScreen> {
                   }).toList(),
                 ))
               ]),
+              SizedBox(height: 30),
               FutureBuilder(
                 future: exchangeRateService.getLatestExchangeRates(
                     dropdownValue),
@@ -59,8 +61,9 @@ class _ExchangeRateScreenState extends State<ExchangeRateScreen> {
                   if (snapshot.hasData) {
                     var response = json.decode(snapshot.data);
                     return Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Row(
+                          Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Expanded(
                                     child: Text('Base', textAlign: TextAlign
@@ -68,7 +71,7 @@ class _ExchangeRateScreenState extends State<ExchangeRateScreen> {
                                 Expanded(child: Center(child: Text(
                                     response['base'])))
                               ]),
-                          Row(
+                          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Expanded(child: Text(
                                     'HUF', textAlign: TextAlign.center)),
@@ -77,7 +80,7 @@ class _ExchangeRateScreenState extends State<ExchangeRateScreen> {
                                         response['rates']['HUF'].toString())))
                               ]
                           ),
-                          Row(
+                          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Expanded(child: Text(
                                     'USD', textAlign: TextAlign.center)),
@@ -86,7 +89,7 @@ class _ExchangeRateScreenState extends State<ExchangeRateScreen> {
                                         response['rates']['USD'].toString())))
                               ]
                           ),
-                          Row(
+                          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Expanded(child: Text(
                                     'EUR', textAlign: TextAlign.center)),
@@ -95,7 +98,7 @@ class _ExchangeRateScreenState extends State<ExchangeRateScreen> {
                                         response['rates']['EUR'].toString())))
                               ]
                           ),
-                          Row(
+                          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Expanded(child: Text(
                                     'GBP', textAlign: TextAlign.center)),
