@@ -63,49 +63,69 @@ class _ExchangeRateScreenState extends State<ExchangeRateScreen> {
                     return Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Expanded(
-                                    child: Text('Base', textAlign: TextAlign
-                                        .center)),
-                                Expanded(child: Center(child: Text(
-                                    response['base'])))
-                              ]),
-                          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Expanded(child: Text(
-                                    'HUF', textAlign: TextAlign.center)),
-                                Expanded(child: Center(
-                                    child: Text(
-                                        response['rates']['HUF'].toString())))
-                              ]
-                          ),
-                          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Expanded(child: Text(
-                                    'USD', textAlign: TextAlign.center)),
-                                Expanded(child: Center(
-                                    child: Text(
-                                        response['rates']['USD'].toString())))
-                              ]
-                          ),
-                          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Expanded(child: Text(
-                                    'EUR', textAlign: TextAlign.center)),
-                                Expanded(child: Center(
-                                    child: Text(
-                                        response['rates']['EUR'].toString())))
-                              ]
-                          ),
-                          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Expanded(child: Text(
-                                    'GBP', textAlign: TextAlign.center)),
-                                Expanded(child: Center(
-                                    child: Text(
-                                        response['rates']['GBP'].toString())))
-                              ]
+                          Container(
+                              height: 50,
+                              child:
+                              Row(
+                                  children: [
+                                    Expanded(
+                                        child: Text('Base', textAlign: TextAlign
+                                            .center)),
+                                    Expanded(child: Center(child: Text(
+                                        response['base'])))
+                                  ])),
+                          Container(
+                              height: 50,
+                              child:
+                              Row(
+                                  children: [
+                                    Expanded(child: Text(
+                                        'HUF', textAlign: TextAlign.center)),
+                                    Expanded(child: Center(
+                                        child: Text(
+                                            response['rates']['HUF']
+                                                .toString())))
+                                  ]
+                              )),
+                          Container(
+                              height: 50,
+                              child:
+                              Row(
+                                  children: [
+                                    Expanded(child: Text(
+                                        'USD', textAlign: TextAlign.center)),
+                                    Expanded(child: Center(
+                                        child: Text(
+                                            response['rates']['USD']
+                                                .toString())))
+                                  ]
+                              )),
+                          Container(
+                              height: 50,
+                              child:
+                              Row(
+                                  children: [
+                                    Expanded(child: Text(
+                                        'EUR', textAlign: TextAlign.center)),
+                                    Expanded(child: Center(
+                                        child: Text(
+                                            response['rates']['EUR']
+                                                .toString())))
+                                  ]
+                              )),
+                          Container(
+                              height: 50,
+                              child:
+                              Row(
+                                  children: [
+                                    Expanded(child: Text(
+                                        'GBP', textAlign: TextAlign.center)),
+                                    Expanded(child: Center(
+                                        child: Text(
+                                            response['rates']['GBP']
+                                                .toString())))
+                                  ]
+                              )
                           )
                         ]);
                   } else {
